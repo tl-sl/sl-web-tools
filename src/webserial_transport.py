@@ -161,7 +161,7 @@ async def create_serial_connection(
     return transport, protocol
 
 
-# Directly patch pyserial-asyncio
-import serial_asyncio
 
-serial_asyncio.create_serial_connection = create_serial_connection
+# Directly patch zigpy-serial
+import zigpy.serial
+zigpy.serial.create_serial_connection = create_serial_connection
