@@ -21,32 +21,43 @@ export const ApplicationNames = {
 };
 
 export enum FirmwareType {
-  NCP_UART_HW = 'ncp-uart-hw',
-  RCP_UART_802154 = 'rcp-uart-802154',
-  ZIGBEE_NCP_RCP_UART_802154 = 'zigbee-ncp-rcp-uart-802154',
-  OT_RCP = 'ot-rcp',
+  ZIGBEE_NCP = 'zigbee_ncp',
+  OPENTHREAD_RCP = 'openthread_rcp',
+  BOOTLOADER = 'bootloader',
+  MULTIPAN = 'multipan',
+
+  UNKNOWN = 'unknown',
 }
 
+export const LegacyTypeToFirmwareType = {
+  'ncp-uart-hw': FirmwareType.ZIGBEE_NCP,
+  'ncp-uart-sw': FirmwareType.ZIGBEE_NCP,
+  'rcp-uart-802154': FirmwareType.MULTIPAN,
+  'ot-rcp': FirmwareType.OPENTHREAD_RCP,
+  'gecko-bootloader': FirmwareType.BOOTLOADER,
+};
+
 export const FirmwareIcons = {
-  [FirmwareType.NCP_UART_HW]: mdiZigbee,
-  [FirmwareType.RCP_UART_802154]: mdiMulticast,
-  [FirmwareType.ZIGBEE_NCP_RCP_UART_802154]: mdiMulticast,
-  [FirmwareType.OT_RCP]: mdiThread,
+  [FirmwareType.ZIGBEE_NCP]: mdiZigbee,
+  [FirmwareType.MULTIPAN]: mdiMulticast,
+  [FirmwareType.OPENTHREAD_RCP]: mdiThread,
+  [FirmwareType.BOOTLOADER]: mdiFirmware,
+  [FirmwareType.UNKNOWN]: mdiFirmware,
 };
 
 export const FirmwareNames = {
-  [FirmwareType.NCP_UART_HW]: 'Zigbee (EZSP)',
-  [FirmwareType.RCP_UART_802154]: 'Multi-PAN (RCP)',
-  [FirmwareType.ZIGBEE_NCP_RCP_UART_802154]:
-    'Multi-PAN (Zigbee NCP & Thread RCP)',
-  [FirmwareType.OT_RCP]: 'OpenThread (RCP)',
+  [FirmwareType.ZIGBEE_NCP]: 'Zigbee (EZSP)',
+  [FirmwareType.MULTIPAN]: 'Multi-PAN (RCP)',
+  [FirmwareType.OPENTHREAD_RCP]: 'OpenThread (RCP)',
+  [FirmwareType.BOOTLOADER]: 'Gecko Bootloader',
+  [FirmwareType.UNKNOWN]: 'Unknown',
 };
 
 export const ApplicationTypeToFirmwareType = {
-  [ApplicationType.CPC]: FirmwareType.RCP_UART_802154,
-  [ApplicationType.EZSP]: FirmwareType.NCP_UART_HW,
-  [ApplicationType.SPINEL]: FirmwareType.OT_RCP,
-  [ApplicationType.GECKO_BOOTLOADER]: undefined,
+  [ApplicationType.CPC]: FirmwareType.MULTIPAN,
+  [ApplicationType.EZSP]: FirmwareType.ZIGBEE_NCP,
+  [ApplicationType.SPINEL]: FirmwareType.OPENTHREAD_RCP,
+  [ApplicationType.GECKO_BOOTLOADER]: FirmwareType.BOOTLOADER,
 };
 
 export interface USBFilter {
