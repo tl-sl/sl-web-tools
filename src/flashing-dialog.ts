@@ -24,6 +24,7 @@ import {
   ApplicationType,
   ApplicationTypeToFirmwareType,
   mdiFirmware,
+  LegacyTypeToFirmwareType,
 } from './const';
 import { setupPyodide, PyodideLoadState } from './setup-pyodide';
 
@@ -189,7 +190,11 @@ export class FlashingDialog extends LitElement {
     } catch (e) {
       return html``;
     }
-
+    const fwTypeValue = metadata.fw_type
+      .value as keyof typeof LegacyTypeToFirmwareType;
+    if (fwTypeValue in LegacyTypeToFirmwareType) {
+      metadata.fw_type = LegacyTypeToFirmwareType[fwTypeValue];
+    }
     return html`
       <table>
         <tbody>
