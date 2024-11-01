@@ -19,6 +19,13 @@ try:
 except ImportError:
     sys.modules["termios"] = object()  # type: ignore[assignment]
 
+class MockSqlite3:
+    sqlite_version = "3.31.1"
+    sqlite_version_info = (3, 31, 1)
+try:
+    import sqlite3  # noqa: F401
+except ImportError:
+    sys.modules["sqlite3"] = MockSqlite3()
 
 _SERIAL_PORT = None
 _SERIAL_PORT_CLOSING_QUEUE = []

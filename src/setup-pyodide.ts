@@ -30,6 +30,9 @@ const MOCKED_MODULES: PythonPackageSpec[] = [
   { package: 'pure-pcapy3', module: 'pure_pcapy3' },
   { package: 'idna', module: 'idna' },
   { package: 'typing_extensions', module: 'typing_extensions' },
+  { package: 'gpiod', module: 'gpiod' },
+  { package: 'rpds', module: 'rpds' },
+  { package: 'rpds-py', module: 'rpds-py' },
 
   // Internal modules not bundled by default with pyodide
   { package: 'ssl', module: 'ssl', version: '1.0.0' },
