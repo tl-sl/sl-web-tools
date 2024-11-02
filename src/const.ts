@@ -1,4 +1,4 @@
-import { mdiMulticast, mdiZigbee } from '@mdi/js';
+import { mdiMulticast, mdiZigbee, mdiRouter } from '@mdi/js';
 
 export const mdiFirmware =
   'M9.5,8.5L11,10L8,13L11,16L9.5,17.5L5,13L9.5,8.5M14.5,17.5L13,16L16,13L13,10L14.5,8.5L19,13L14.5,17.5M21,2H3A2,2 0 0,0 1,4V20A2,2 0 0,0 3,22H21A2,2 0 0,0 23,20V4A2,2 0 0,0 21,2M21,20H3V6H21V20Z';
@@ -11,6 +11,7 @@ export enum ApplicationType {
   CPC = 'cpc',
   EZSP = 'ezsp',
   SPINEL = 'spinel',
+  ROUTER = 'router',
 }
 
 export const ApplicationNames = {
@@ -18,10 +19,12 @@ export const ApplicationNames = {
   [ApplicationType.CPC]: 'Multi-PAN (RCP)',
   [ApplicationType.EZSP]: 'Zigbee (EZSP)',
   [ApplicationType.SPINEL]: 'OpenThread (RCP)',
+  [ApplicationType.ROUTER]: 'Zigbee Router',
 };
 
 export enum FirmwareType {
   ZIGBEE_NCP = 'zigbee_ncp',
+  ZIGBEE_ROUTER = 'zigbee_router',
   OPENTHREAD_RCP = 'openthread_rcp',
   BOOTLOADER = 'bootloader',
   MULTIPAN = 'multipan',
@@ -39,6 +42,7 @@ export const LegacyTypeToFirmwareType = {
 
 export const FirmwareIcons = {
   [FirmwareType.ZIGBEE_NCP]: mdiZigbee,
+  [FirmwareType.ZIGBEE_ROUTER]: mdiRouter,
   [FirmwareType.MULTIPAN]: mdiMulticast,
   [FirmwareType.OPENTHREAD_RCP]: mdiThread,
   [FirmwareType.BOOTLOADER]: mdiFirmware,
@@ -47,6 +51,7 @@ export const FirmwareIcons = {
 
 export const FirmwareNames = {
   [FirmwareType.ZIGBEE_NCP]: 'Zigbee (EZSP)',
+  [FirmwareType.ZIGBEE_ROUTER]: 'Zigbee Router',
   [FirmwareType.MULTIPAN]: 'Multi-PAN (RCP)',
   [FirmwareType.OPENTHREAD_RCP]: 'OpenThread (RCP)',
   [FirmwareType.BOOTLOADER]: 'Gecko Bootloader',
@@ -56,6 +61,7 @@ export const FirmwareNames = {
 export const ApplicationTypeToFirmwareType = {
   [ApplicationType.CPC]: FirmwareType.MULTIPAN,
   [ApplicationType.EZSP]: FirmwareType.ZIGBEE_NCP,
+  [ApplicationType.ROUTER]: FirmwareType.ZIGBEE_ROUTER,
   [ApplicationType.SPINEL]: FirmwareType.OPENTHREAD_RCP,
   [ApplicationType.GECKO_BOOTLOADER]: FirmwareType.BOOTLOADER,
 };
@@ -77,6 +83,7 @@ export interface ManifestBaudrates {
   cpc: number[];
   ezsp: number[];
   spinel: number[];
+  router: number[];
 }
 
 export interface Manifest {
