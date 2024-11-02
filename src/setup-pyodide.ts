@@ -63,8 +63,9 @@ async function loadPyodide(): Promise<Pyodide> {
 
 function parseRequirementsTxt(requirementsTxt: string): Map<string, string> {
   const packages = new Map<string, string>();
+  const lineEnding = requirementsTxt.includes('\r\n') ? '\r\n' : '\n';
 
-  for (const line of requirementsTxt.trim().split('\n')) {
+  for (const line of requirementsTxt.trim().split(lineEnding)) {
     const [pkg, version] = line.split('==');
     packages.set(pkg, version);
   }
