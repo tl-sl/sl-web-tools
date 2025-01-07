@@ -299,12 +299,14 @@ export class FlashingDialog extends LitElement {
           [PyApplicationType.CPC, this.manifest.baudrates.cpc],
           [PyApplicationType.EZSP, this.manifest.baudrates.ezsp],
           [PyApplicationType.SPINEL, this.manifest.baudrates.spinel],
+          [PyApplicationType.ROUTER, this.manifest.baudrates.router],
         ]),
         probe_methods: [
           PyApplicationType.GECKO_BOOTLOADER,
           PyApplicationType.CPC,
           PyApplicationType.EZSP,
           PyApplicationType.SPINEL,
+          PyApplicationType.ROUTER,
         ],
         device: '/dev/webserial', // the device name is ignored
       });
